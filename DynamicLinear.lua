@@ -5,6 +5,7 @@ DynamicLinear, parent = torch.class('nn.DynamicLinear', 'nn.Module')
 function DynamicLinear:__init(inputSize, outputSize)
     self.module = nn.Linear(inputSize, outputSize)
     self.module_params, self.module_gradParams = self.module:getParameters()
+    print(self.module_params:size())
 end
 
 function DynamicLinear:updateOutput(input)
