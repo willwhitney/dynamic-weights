@@ -18,6 +18,7 @@ function DynamicLinear:updateOutput(input)
 end
 
 function DynamicLinear:updateGradInput(input, gradOutput)
+    self.module:zeroGradParameters()
     local new_params = input[1]
     local current_input = input[2]
 

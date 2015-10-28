@@ -13,11 +13,11 @@ net:add(nn.Tanh())
 
 criterion = nn.MSECriterion()
 
-
-for i = 1, 1000 do
+-- input = torch.rand(1, 2)
+for i = 1, 10000 do
     input = torch.rand(1, 2)
-    target = torch.zeros(1, 2)
-
+    target = torch.Tensor{{(input[1][1] + input[1][2])/2, (input[1][1] - input[1][2])/2, }}
+    -- print(target)
 
     -- DL:forward(input_table)
 
@@ -32,9 +32,10 @@ for i = 1, 1000 do
 
     -- print(criterion:backward(net.output, target))
 
-    DL_gradInput = DL:backward(concat.output, criterion:backward(net.output, target))
+    -- DL_gradInput = DL:backward(concat.output, criterion:backward(output, target))
     -- print(DL_gradInput)
     -- print(concat:backward(input, DL_gradInput))
     net:backward(input, criterion:backward(net.output, target))
-    net:updateParameters(2e-9)
+    net:updateParameters(2e-1)
+    net:zeroGradParameters()
 end
